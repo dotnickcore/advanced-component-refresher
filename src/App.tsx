@@ -1,4 +1,5 @@
 import Button from './components/Button';
+import Container from './components/Container';
 import Input from './components/Input';
 
 function App() {
@@ -8,11 +9,13 @@ function App() {
       <Input id="age" label="Your Age" type="number" />
 
       <p>
-        <Button el="button">A Button</Button>
+        <Button>A Button</Button>
       </p>
       <p>
-        <Button el="anchor">An Anchor</Button>
+        <Button href="https://google.com">An Anchor</Button>
       </p>
+
+      <Container as={Button} />
     </main>
   );
 }
