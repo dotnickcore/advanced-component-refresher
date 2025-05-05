@@ -1,7 +1,8 @@
-import { useRef } from 'react';
 import Button from './components/Button';
 import Container from './components/Container';
 import Input from './components/Input';
+import Form, { type FormHandle } from './components/Form';
+import { useRef } from 'react';
 
 function App() {
   /*
@@ -11,12 +12,33 @@ function App() {
 
     null: The initial value. Until the input mounts and React assigns the real DOM node, input.current will be null.
   */
-  const input = useRef<HTMLInputElement>(null);
+
+  const customForm = useRef<FormHandle>(null);
+
+  function handleSave(data: unknown) {
+    const extractedData = data as {
+      name: string;
+      age: string;
+    };
+
+    console.log(extractedData);
+
+    customForm.current?.clear();
+  }
+
+  /*
+    <Input label="Test" id="test" ref={input} />
+  */
 
   return (
     <main>
-      <Input id="name" label="Your Name" type="text" />
-      <Input id="age" label="Your Age" type="number" />
+      <Form onSave={handleSave} ref={customForm}>
+        <Input id="name" label="Your Name" type="text" />
+        <Input id="age" label="Your Age" type="number" />
+        <p>
+          <Button>Save</Button>
+        </p>
+      </Form>
 
       <p>
         <Button>A Button</Button>
@@ -26,8 +48,6 @@ function App() {
       </p>
 
       <Container as={Button}>Click Me</Container>
-
-      <Input label="Test" id="test" ref={input} />
     </main>
   );
 }
