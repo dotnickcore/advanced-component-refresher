@@ -1,9 +1,10 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithRef } from "react";
 
 export type InputProps = {
     id: string;
     label: string;
-} & ComponentPropsWithoutRef<'input'>
+
+} & ComponentPropsWithRef<'input'>
 
 /*
     ComponentPropsWithoutRef<'input'> is a utility type from React that takes all the standard props of an HTML <input> element except the ref.
